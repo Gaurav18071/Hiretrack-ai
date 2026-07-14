@@ -1,0 +1,127 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  RECRUITER
+  HR
+}
+
+enum JobStatus {
+  DRAFT
+  OPEN
+  CLOSED
+}
+
+model User {
+  id       String   @id @default(cuid())
+  name     String
+  email    String   @unique
+  password String
+  role     UserRole @default(RECRUITER)
+
+  jobs Job[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Job {
+  id                String    @id @default(cuid())
+  title             String
+  description       String
+  department        String
+  location          String
+  salaryMin         Int?
+  salaryMax         Int?
+  employmentType    String
+  status            JobStatus @default(DRAFT)
+  requiredSkills    String[]
+  preferredSkills   String[]
+  minimumExperience Int       @default(0)
+  minimumEducation  String?
+  recruiterId       String
+  recruiter         User      @relation(fields: [recruiterId], references: [id], onDelete: Cascade)
+
+  applications Application[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ApplicationStatus {
+  APPLIED
+  SCREENING
+  INTERVIEW
+  OFFER
+  HIRED
+  REJECTED
+}
+
+model Candidate {
+  id         String   @id @default(cuid())
+  name       String
+  email      String   @unique
+  phone      String?
+  experience Int?
+  skills     String[]
+  resumeUrl  String?
+
+  applications Application[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Application {
+  id     String            @id @default(cuid())
+  status ApplicationStatus @default(APPLIED)
+
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+  jobId String
+  job   Job    @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  appliedAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  interviews     Interview[]
+  resumeAnalysis ResumeAnalysis?
+
+  @@unique([candidateId, jobId])
+}
+
+model Interview {
+  id          String   @id @default(cuid())
+  scheduledAt DateTime
+  mode        String
+  meetingLink String?
+  feedback    String?
+  rating      Int?
+
+  applicationId String
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ResumeAnalysis {
+  id             String   @id @default(cuid())
+  matchScore     Int
+  strengths      String[]
+  missingSkills  String[]
+  recommendation String
+
+  applicationId String      @unique
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

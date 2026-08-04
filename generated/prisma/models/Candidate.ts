@@ -41,6 +41,9 @@ export type CandidateMinAggregateOutputType = {
   phone: string | null
   experience: number | null
   resumeUrl: string | null
+  resumeFileName: string | null
+  resumeMimeType: string | null
+  resumeUploadedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -52,6 +55,9 @@ export type CandidateMaxAggregateOutputType = {
   phone: string | null
   experience: number | null
   resumeUrl: string | null
+  resumeFileName: string | null
+  resumeMimeType: string | null
+  resumeUploadedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -64,6 +70,9 @@ export type CandidateCountAggregateOutputType = {
   experience: number
   skills: number
   resumeUrl: number
+  resumeFileName: number
+  resumeMimeType: number
+  resumeUploadedAt: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -85,6 +94,9 @@ export type CandidateMinAggregateInputType = {
   phone?: true
   experience?: true
   resumeUrl?: true
+  resumeFileName?: true
+  resumeMimeType?: true
+  resumeUploadedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -96,6 +108,9 @@ export type CandidateMaxAggregateInputType = {
   phone?: true
   experience?: true
   resumeUrl?: true
+  resumeFileName?: true
+  resumeMimeType?: true
+  resumeUploadedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -108,6 +123,9 @@ export type CandidateCountAggregateInputType = {
   experience?: true
   skills?: true
   resumeUrl?: true
+  resumeFileName?: true
+  resumeMimeType?: true
+  resumeUploadedAt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -207,6 +225,9 @@ export type CandidateGroupByOutputType = {
   experience: number | null
   skills: string[]
   resumeUrl: string | null
+  resumeFileName: string | null
+  resumeMimeType: string | null
+  resumeUploadedAt: Date | null
   createdAt: Date
   updatedAt: Date
   _count: CandidateCountAggregateOutputType | null
@@ -242,6 +263,9 @@ export type CandidateWhereInput = {
   experience?: Prisma.IntNullableFilter<"Candidate"> | number | null
   skills?: Prisma.StringNullableListFilter<"Candidate">
   resumeUrl?: Prisma.StringNullableFilter<"Candidate"> | string | null
+  resumeFileName?: Prisma.StringNullableFilter<"Candidate"> | string | null
+  resumeMimeType?: Prisma.StringNullableFilter<"Candidate"> | string | null
+  resumeUploadedAt?: Prisma.DateTimeNullableFilter<"Candidate"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Candidate"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Candidate"> | Date | string
   applications?: Prisma.ApplicationListRelationFilter
@@ -255,6 +279,9 @@ export type CandidateOrderByWithRelationInput = {
   experience?: Prisma.SortOrderInput | Prisma.SortOrder
   skills?: Prisma.SortOrder
   resumeUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  resumeFileName?: Prisma.SortOrderInput | Prisma.SortOrder
+  resumeMimeType?: Prisma.SortOrderInput | Prisma.SortOrder
+  resumeUploadedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   applications?: Prisma.ApplicationOrderByRelationAggregateInput
@@ -271,6 +298,9 @@ export type CandidateWhereUniqueInput = Prisma.AtLeast<{
   experience?: Prisma.IntNullableFilter<"Candidate"> | number | null
   skills?: Prisma.StringNullableListFilter<"Candidate">
   resumeUrl?: Prisma.StringNullableFilter<"Candidate"> | string | null
+  resumeFileName?: Prisma.StringNullableFilter<"Candidate"> | string | null
+  resumeMimeType?: Prisma.StringNullableFilter<"Candidate"> | string | null
+  resumeUploadedAt?: Prisma.DateTimeNullableFilter<"Candidate"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Candidate"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Candidate"> | Date | string
   applications?: Prisma.ApplicationListRelationFilter
@@ -284,6 +314,9 @@ export type CandidateOrderByWithAggregationInput = {
   experience?: Prisma.SortOrderInput | Prisma.SortOrder
   skills?: Prisma.SortOrder
   resumeUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  resumeFileName?: Prisma.SortOrderInput | Prisma.SortOrder
+  resumeMimeType?: Prisma.SortOrderInput | Prisma.SortOrder
+  resumeUploadedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CandidateCountOrderByAggregateInput
@@ -304,6 +337,9 @@ export type CandidateScalarWhereWithAggregatesInput = {
   experience?: Prisma.IntNullableWithAggregatesFilter<"Candidate"> | number | null
   skills?: Prisma.StringNullableListFilter<"Candidate">
   resumeUrl?: Prisma.StringNullableWithAggregatesFilter<"Candidate"> | string | null
+  resumeFileName?: Prisma.StringNullableWithAggregatesFilter<"Candidate"> | string | null
+  resumeMimeType?: Prisma.StringNullableWithAggregatesFilter<"Candidate"> | string | null
+  resumeUploadedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Candidate"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Candidate"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Candidate"> | Date | string
 }
@@ -316,6 +352,9 @@ export type CandidateCreateInput = {
   experience?: number | null
   skills?: Prisma.CandidateCreateskillsInput | string[]
   resumeUrl?: string | null
+  resumeFileName?: string | null
+  resumeMimeType?: string | null
+  resumeUploadedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   applications?: Prisma.ApplicationCreateNestedManyWithoutCandidateInput
@@ -329,6 +368,9 @@ export type CandidateUncheckedCreateInput = {
   experience?: number | null
   skills?: Prisma.CandidateCreateskillsInput | string[]
   resumeUrl?: string | null
+  resumeFileName?: string | null
+  resumeMimeType?: string | null
+  resumeUploadedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutCandidateInput
@@ -342,6 +384,9 @@ export type CandidateUpdateInput = {
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   skills?: Prisma.CandidateUpdateskillsInput | string[]
   resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeFileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeMimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUploadedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.ApplicationUpdateManyWithoutCandidateNestedInput
@@ -355,6 +400,9 @@ export type CandidateUncheckedUpdateInput = {
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   skills?: Prisma.CandidateUpdateskillsInput | string[]
   resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeFileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeMimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUploadedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutCandidateNestedInput
@@ -368,6 +416,9 @@ export type CandidateCreateManyInput = {
   experience?: number | null
   skills?: Prisma.CandidateCreateskillsInput | string[]
   resumeUrl?: string | null
+  resumeFileName?: string | null
+  resumeMimeType?: string | null
+  resumeUploadedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -380,6 +431,9 @@ export type CandidateUpdateManyMutationInput = {
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   skills?: Prisma.CandidateUpdateskillsInput | string[]
   resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeFileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeMimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUploadedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -392,6 +446,9 @@ export type CandidateUncheckedUpdateManyInput = {
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   skills?: Prisma.CandidateUpdateskillsInput | string[]
   resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeFileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeMimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUploadedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -404,6 +461,9 @@ export type CandidateCountOrderByAggregateInput = {
   experience?: Prisma.SortOrder
   skills?: Prisma.SortOrder
   resumeUrl?: Prisma.SortOrder
+  resumeFileName?: Prisma.SortOrder
+  resumeMimeType?: Prisma.SortOrder
+  resumeUploadedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -419,6 +479,9 @@ export type CandidateMaxOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   experience?: Prisma.SortOrder
   resumeUrl?: Prisma.SortOrder
+  resumeFileName?: Prisma.SortOrder
+  resumeMimeType?: Prisma.SortOrder
+  resumeUploadedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -430,6 +493,9 @@ export type CandidateMinOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   experience?: Prisma.SortOrder
   resumeUrl?: Prisma.SortOrder
+  resumeFileName?: Prisma.SortOrder
+  resumeMimeType?: Prisma.SortOrder
+  resumeUploadedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -450,6 +516,10 @@ export type CandidateCreateskillsInput = {
 export type CandidateUpdateskillsInput = {
   set?: string[]
   push?: string | string[]
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
 }
 
 export type CandidateCreateNestedOneWithoutApplicationsInput = {
@@ -474,6 +544,9 @@ export type CandidateCreateWithoutApplicationsInput = {
   experience?: number | null
   skills?: Prisma.CandidateCreateskillsInput | string[]
   resumeUrl?: string | null
+  resumeFileName?: string | null
+  resumeMimeType?: string | null
+  resumeUploadedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -486,6 +559,9 @@ export type CandidateUncheckedCreateWithoutApplicationsInput = {
   experience?: number | null
   skills?: Prisma.CandidateCreateskillsInput | string[]
   resumeUrl?: string | null
+  resumeFileName?: string | null
+  resumeMimeType?: string | null
+  resumeUploadedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -514,6 +590,9 @@ export type CandidateUpdateWithoutApplicationsInput = {
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   skills?: Prisma.CandidateUpdateskillsInput | string[]
   resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeFileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeMimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUploadedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -526,6 +605,9 @@ export type CandidateUncheckedUpdateWithoutApplicationsInput = {
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   skills?: Prisma.CandidateUpdateskillsInput | string[]
   resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeFileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeMimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUploadedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -569,6 +651,9 @@ export type CandidateSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   experience?: boolean
   skills?: boolean
   resumeUrl?: boolean
+  resumeFileName?: boolean
+  resumeMimeType?: boolean
+  resumeUploadedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   applications?: boolean | Prisma.Candidate$applicationsArgs<ExtArgs>
@@ -583,6 +668,9 @@ export type CandidateSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   experience?: boolean
   skills?: boolean
   resumeUrl?: boolean
+  resumeFileName?: boolean
+  resumeMimeType?: boolean
+  resumeUploadedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["candidate"]>
@@ -595,6 +683,9 @@ export type CandidateSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   experience?: boolean
   skills?: boolean
   resumeUrl?: boolean
+  resumeFileName?: boolean
+  resumeMimeType?: boolean
+  resumeUploadedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["candidate"]>
@@ -607,11 +698,14 @@ export type CandidateSelectScalar = {
   experience?: boolean
   skills?: boolean
   resumeUrl?: boolean
+  resumeFileName?: boolean
+  resumeMimeType?: boolean
+  resumeUploadedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CandidateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "experience" | "skills" | "resumeUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["candidate"]>
+export type CandidateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "experience" | "skills" | "resumeUrl" | "resumeFileName" | "resumeMimeType" | "resumeUploadedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["candidate"]>
 export type CandidateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   applications?: boolean | Prisma.Candidate$applicationsArgs<ExtArgs>
   _count?: boolean | Prisma.CandidateCountOutputTypeDefaultArgs<ExtArgs>
@@ -632,6 +726,9 @@ export type $CandidatePayload<ExtArgs extends runtime.Types.Extensions.InternalA
     experience: number | null
     skills: string[]
     resumeUrl: string | null
+    resumeFileName: string | null
+    resumeMimeType: string | null
+    resumeUploadedAt: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["candidate"]>
@@ -1065,6 +1162,9 @@ export interface CandidateFieldRefs {
   readonly experience: Prisma.FieldRef<"Candidate", 'Int'>
   readonly skills: Prisma.FieldRef<"Candidate", 'String[]'>
   readonly resumeUrl: Prisma.FieldRef<"Candidate", 'String'>
+  readonly resumeFileName: Prisma.FieldRef<"Candidate", 'String'>
+  readonly resumeMimeType: Prisma.FieldRef<"Candidate", 'String'>
+  readonly resumeUploadedAt: Prisma.FieldRef<"Candidate", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Candidate", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Candidate", 'DateTime'>
 }

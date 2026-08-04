@@ -935,6 +935,9 @@ export const CandidateScalarFieldEnum = {
   experience: 'experience',
   skills: 'skills',
   resumeUrl: 'resumeUrl',
+  resumeFileName: 'resumeFileName',
+  resumeMimeType: 'resumeMimeType',
+  resumeUploadedAt: 'resumeUploadedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

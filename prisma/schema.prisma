@@ -70,7 +70,11 @@ model Candidate {
   phone      String?
   experience Int?
   skills     String[]
-  resumeUrl  String?
+
+  resumeUrl        String?
+  resumeFileName   String?
+  resumeMimeType   String?
+  resumeUploadedAt DateTime?
 
   applications Application[]
 

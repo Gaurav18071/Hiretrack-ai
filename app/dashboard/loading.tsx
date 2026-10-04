@@ -22,24 +22,31 @@ export default function DashboardLoading() {
 
       {/* Main content skeletons */}
       <main className="mx-auto max-w-7xl space-y-8 px-4 py-8 sm:px-6 lg:px-8">
-        {/* KPI Skeleton Grid */}
-        <section className="space-y-3" aria-label="Loading KPIs">
-          <div className="h-5 w-48 rounded bg-zinc-200 animate-pulse dark:bg-zinc-800" />
+        {/* KPI Skeleton Grid — mirrors StatsCard layout */}
+        <section className="space-y-3" aria-label="Loading overview metrics">
+          <div className="h-5 w-24 rounded bg-zinc-200 animate-pulse dark:bg-zinc-800" />
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {Array.from({ length: 4 }).map((_, i) => (
               <div
                 key={i}
-                className="h-32 rounded-xl border border-zinc-200/80 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900/60"
+                className="flex flex-col justify-between rounded-xl border border-zinc-200/80 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900/60"
               >
-                <div className="flex justify-between">
-                  <div className="h-4 w-24 rounded bg-zinc-200 animate-pulse dark:bg-zinc-800" />
-                  <div className="h-7 w-7 rounded-lg bg-zinc-200 animate-pulse dark:bg-zinc-800" />
+                {/* Label + icon row */}
+                <div className="flex items-start justify-between gap-2">
+                  <div className="h-4 w-28 animate-pulse rounded bg-zinc-200 dark:bg-zinc-800" />
+                  <div className="h-8 w-8 animate-pulse rounded-lg bg-zinc-200 dark:bg-zinc-800" />
                 </div>
-                <div className="mt-4 h-7 w-16 rounded bg-zinc-200 animate-pulse dark:bg-zinc-800" />
+                {/* Value placeholder */}
+                <div className="my-4 h-8 w-20 animate-pulse rounded-md bg-zinc-200/80 dark:bg-zinc-800" />
+                {/* Footer description */}
+                <div className="border-t border-zinc-100 pt-2.5 dark:border-zinc-800/80">
+                  <div className="h-3 w-36 animate-pulse rounded bg-zinc-200/60 dark:bg-zinc-800/70" />
+                </div>
               </div>
             ))}
           </div>
         </section>
+
 
         {/* Quick Actions Skeleton */}
         <section className="space-y-3" aria-label="Loading quick actions">

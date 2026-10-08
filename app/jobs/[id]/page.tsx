@@ -1,3 +1,4 @@
+
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { notFound, redirect } from "next/navigation";
@@ -21,21 +22,21 @@ export default async function JobDetailsPage({
   const { id } = await params;
 
   const job = await prisma.job.findFirst({
-  where: {
-    id,
-    recruiterId: session.user.id,
-  },
-  include: {
-    applications: {
-      include: {
-        candidate: true,
-      },
-      orderBy: {
-        appliedAt: "desc",
+    where: {
+      id,
+      recruiterId: session.user.id,
+    },
+    include: {
+      applications: {
+        include: {
+          candidate: true,
+        },
+        orderBy: {
+          appliedAt: "desc",
+        },
       },
     },
-  },
-});
+  });
 
   if (!job) {
     notFound();
@@ -46,15 +47,6 @@ export default async function JobDetailsPage({
       <Link href="/jobs" className="mb-6 inline-block underline">
         ← Back to Jobs
       </Link>
-
-      <div className="mt-4 mb-8 flex gap-4">
-        <Link
-          href={`/jobs/${job.id}/candidates/new`}
-          className="rounded bg-black px-4 py-2 text-white"
-        >
-          + Add Candidate
-        </Link>
-      </div>
 
       <h1 className="text-3xl font-bold">{job.title}</h1>
 
@@ -115,68 +107,63 @@ export default async function JobDetailsPage({
         </p>
       </section>
 
-  <section className="mt-10">
-  <div className="mb-6 flex items-center justify-between">
-    <h2 className="text-2xl font-bold">
-      Candidates ({job.applications.length})
-    </h2>
+      <section className="mt-10">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="text-2xl font-bold">
+            Candidates ({job.applications.length})
+          </h2>
 
-    <Link
-      href={`/jobs/${job.id}/candidates/new`}
-      className="rounded bg-black px-4 py-2 text-white"
-    >
-      + Add Candidate
-    </Link>
-  </div>
+          <Link
+            href={`/jobs/${job.id}/candidates/new`}
+            className="rounded bg-black px-4 py-2 text-white"
+          >
+            + Add Candidate
+          </Link>
+        </div>
 
-  {job.applications.length === 0 ? (
-    <div className="rounded border p-6 text-center">
-      <p className="text-gray-600">
-        No candidates have applied yet.
-      </p>
-    </div>
-  ) : (
-    <div className="space-y-4">
-      {job.applications.map((application) => (
-        <Link
-          key={application.id}
-          href={`/jobs/${job.id}/candidates/${application.candidate.id}`}
-          className="block rounded-lg border p-5 transition hover:bg-gray-50"
-        >
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-lg font-semibold">
-                {application.candidate.name}
-              </h3>
-
-              <p className="text-gray-600">
-                {application.candidate.email}
-              </p>
-            </div>
-
-            <span className="rounded bg-gray-100 px-3 py-1 text-sm">
-              {application.status}
-            </span>
+        {job.applications.length === 0 ? (
+          <div className="rounded border p-6 text-center">
+            <p className="text-gray-600">No candidates have applied yet.</p>
           </div>
+        ) : (
+          <div className="space-y-4">
+            {job.applications.map((application) => (
+              <Link
+                key={application.id}
+                href={`/jobs/${job.id}/candidates/${application.candidate.id}`}
+                className="block rounded-lg border p-5 transition hover:bg-gray-50"
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-semibold">
+                      {application.candidate.name}
+                    </h3>
+                    <p className="text-gray-600">
+                      {application.candidate.email}
+                    </p>
+                  </div>
+                  <span className="rounded bg-gray-100 px-3 py-1 text-sm">
+                    {application.status}
+                  </span>
+                </div>
 
-          <div className="mt-3">
-            <p>
-              <strong>Experience:</strong>{" "}
-              {application.candidate.experience ?? 0} years
-            </p>
-
-            <p className="mt-1">
-              <strong>Skills:</strong>{" "}
-              {application.candidate.skills.length > 0
-                ? application.candidate.skills.join(", ")
-                : "No skills added"}
-            </p>
+                <div className="mt-3">
+                  <p>
+                    <strong>Experience:</strong>{" "}
+                    {application.candidate.experience ?? 0} years
+                  </p>
+                  <p className="mt-1">
+                    <strong>Skills:</strong>{" "}
+                    {application.candidate.skills.length > 0
+                      ? application.candidate.skills.join(", ")
+                      : "No skills added"}
+                  </p>
+                </div>
+              </Link>
+            ))}
           </div>
-        </Link>
-      ))}
-    </div>
-  )}
-</section>
+        )}
+      </section>
     </main>
   );
 }

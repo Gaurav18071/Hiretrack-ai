@@ -68,10 +68,39 @@ export default function DashboardLoading() {
           </div>
         </section>
 
-        {/* Pipeline Skeleton */}
+        {/* Pipeline Skeleton - Enhanced to match final layout */}
         <section className="space-y-3" aria-label="Loading pipeline">
-          <div className="h-5 w-44 rounded bg-zinc-200 animate-pulse dark:bg-zinc-800" />
-          <div className="h-36 rounded-xl border border-zinc-200/80 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900/60" />
+          <div className="flex items-center justify-between">
+            <div className="space-y-1.5">
+              <div className="h-5 w-32 rounded bg-zinc-200 animate-pulse dark:bg-zinc-800" />
+              <div className="h-3 w-56 rounded bg-zinc-200/70 animate-pulse dark:bg-zinc-800/70" />
+            </div>
+            <div className="h-4 w-16 rounded bg-zinc-200 animate-pulse dark:bg-zinc-800" />
+          </div>
+
+          <div className="rounded-xl border border-zinc-200/80 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900/60">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col justify-between rounded-lg border border-zinc-100 bg-zinc-50/60 p-3.5 dark:border-zinc-800/80 dark:bg-zinc-800/40"
+                  style={{ minHeight: '140px' }}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="h-8 w-8 rounded-lg bg-zinc-200 animate-pulse dark:bg-zinc-700" />
+                    <div className="h-3 w-14 rounded bg-zinc-200 animate-pulse dark:bg-zinc-700" />
+                  </div>
+                  <div className="my-3 space-y-1.5">
+                    <div className="h-4 w-20 rounded bg-zinc-200 animate-pulse dark:bg-zinc-700" />
+                    <div className="h-7 w-16 rounded bg-zinc-200/70 animate-pulse dark:bg-zinc-700/60" />
+                  </div>
+                  <div className="border-t border-zinc-200/50 pt-2 dark:border-zinc-700/50">
+                    <div className="h-3 w-24 rounded bg-zinc-200/60 animate-pulse dark:bg-zinc-700/50" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
 
         {/* Recent Sections Skeleton Grid */}

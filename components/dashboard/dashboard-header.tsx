@@ -1,5 +1,5 @@
 import Link from "next/link";
-import LogoutButton from "@/app/components/logout-button";
+import LogoutButton from "@/components/logout-button";
 
 interface DashboardHeaderProps {
   user?: {

@@ -5,6 +5,7 @@ import { StatsSection } from "@/components/dashboard/stats-section";
 import { DashboardQuickActions } from "@/components/dashboard/dashboard-quick-actions";
 import { DashboardPipelineSection } from "@/components/dashboard/dashboard-pipeline-section";
 import { DashboardCardPlaceholder } from "@/components/dashboard/dashboard-card-placeholder";
+import { RecentJobs } from "@/components/dashboard/recent-jobs";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -35,15 +36,12 @@ export default async function DashboardPage() {
 
         {/* Multi-Column Feature Section Grid */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          <DashboardCardPlaceholder
-            title="Recent Jobs"
-            subtitle="Latest active and draft job requisitions"
-            actionHref="/jobs"
-            actionLabel="View all jobs"
-            badge="Live"
-            rowCount={3}
-            emptyHint="Requisitions will populate automatically when jobs are published."
-          />
+          {/*
+            Recent Jobs — displays up to 5 most recently created job postings.
+            Pass `jobs={undefined}` to show loading skeleton.
+            A future commit will fetch real data from the database.
+          */}
+          <RecentJobs />
 
           <DashboardCardPlaceholder
             title="Recent Candidates"
